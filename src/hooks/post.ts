@@ -1,6 +1,7 @@
 // @ts-nocheck
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
+import {gqlFetcher} from "@/src/utils/fetcher";
 
 export function usePosts() {
   const { data, isLoading, error, mutate } = useSWR(
@@ -9,6 +10,27 @@ export function usePosts() {
 
   return {
     posts: data,
+    isLoading,
+    error,
+    mutate,
+  };
+}
+
+export function useGqlPosts() {
+  const query = `
+    query myQuery {
+      myQuery {
+        title
+        body
+        userId
+      }
+    }
+  `;
+
+  const { data, isLoading, error, mutate } = useSWR(query, gqlFetcher);
+
+  return {
+    posts: data?.myQuery,
     isLoading,
     error,
     mutate,
