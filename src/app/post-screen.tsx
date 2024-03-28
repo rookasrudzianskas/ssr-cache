@@ -17,12 +17,12 @@ export default function PostScreen() {
     await mutate()
   }
 
-  const onCreatePost = () => {
-    trigger({
+  const onCreatePost = async () => {
+    const newPost = {
       title: 'foo',
       body: 'bar',
-      userId: 1
-    });
+      userId: 2,
+    };
 
     try {
       await trigger(newPost, {
