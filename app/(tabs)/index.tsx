@@ -5,16 +5,13 @@ import PostScreen from "@/src/app/post-screen";
 import {StatusBar} from "expo-status-bar";
 import useSWR, { SWRConfig } from 'swr'
 import {fetcher} from "@/src/utils/fetcher";
+import {SWRConfiguration} from "@/src/utils/SWRConfiguration";
 
 export default function TabOneScreen() {
   return (
     <View className={'flex-1'}>
       <SWRConfig
-        value={{
-          refreshInterval: 3000,
-          dedupingInterval: 2000,
-          fetcher
-        }}
+        value={SWRConfiguration}
       >
         <PostScreen />
       </SWRConfig>
